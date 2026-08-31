@@ -1,93 +1,35 @@
-# Super-Resolution of Satellite Images using Deep Learning
+# 🛰️ SatResolve: Satellite Image Super-Resolution
 
-## Overview
+**Smart India Hackathon 2026 - Official Prototype**  
+**Team Name:** [Your Team Name Here]  
+**Problem Statement ID:** [Add Your PS ID Here]  
 
-This project aimed to perform super resolution of satellite image using deep learning.
+---
 
-## Data Set
+## 📖 Project Overview
+SatResolve is an AI-powered pipeline designed to synthetically enhance free 10m Sentinel-2 satellite imagery into crisp, <4m high-resolution outputs. 
 
-DOTA dataset is collection of satallite images with label showing its GSD (Ground Sampling Distance) and coordinate of objects.
-Instead of using dataset for object detection or object classification problem, we uses for image super resolution.
+Unlike standard upscaling, our solution explicitly focuses on preserving real-world geographic coordinates (GeoTIFF) and generating **Pixel-Level Uncertainty Maps** to separate true observed data from AI-inferred structures. This ensures the data is strictly reliable for government operations, disaster management, and precision agriculture.
 
-- [A Large-Scale Benchmark and Challenges for Object Detection in Aerial Images](https://captain-whu.github.io/DOTA/index.html)
+## ✨ Key Features
+* **Sub-4m Enhancement:** Achieves a 2.5x spatial resolution upscale while preserving multi-spectral reflectance fidelity (RGB + NIR).
+* **Anti-Hallucination & Uncertainty Mapping:** Outputs an AI confidence heatmap (Green/Yellow/Red) to highlight areas of potential generative hallucination.
+* **Native GIS Interoperability:** Exports directly to GeoTIFF, retaining full Coordinate Reference Systems (CRS) for immediate use in QGIS and ArcGIS.
+* **Downstream Analytical Utility:** Quantifiably improves building footprint extraction and narrow road segmentation for municipal and rural governance.
 
-## Pre-Processing
+## 🛠️ Technology Stack
+* **Deep Learning Core:** PyTorch, TorchVision
+* **Geospatial Processing:** GDAL, Rasterio, Copernicus API
+* **Backend API:** FastAPI
+* **Frontend/Visualization:** React.js, Leaflet
 
-Since dataset is not designed for image super resolution, we need to perform preprocessing of data to be able to perform the tasks.
+## 📂 Dataset Reference
+* **Input Data:** European Space Agency (ESA) Copernicus Sentinel-2 (L2A) 10m Imagery.
+* **Ground Truth / Paired Data:** [Mention the dataset you are using to train/test, e.g., WorldStrat or OpenSR]
 
-1. Limit range of GSD to only keep high resolution image above our threashold
-2. Crop images into multiple of 1024x1024 images
-3. Some images of dataset contain black area, remove these samples
-4. Images after this step is considered high resolution image (gold reference)
-5. Downsample to create low resolution image. We do by reducing image to 216x216
-6. Images after step 5 is considered low resolution image which is input to the model
+## 🚀 Getting Started
 
-This step is performed using following Jupyter notebooks.
-
- - [Dataset_Preprocessing.ipynb](Dataset_Preprocessing.ipynb)
- - [prepare_test_set.ipynb](prepare_test_set.ipynb)
-
-## Deep Learning Models
-
-Based on survey paper and review articles, following four arhcitectures are selected.
-
-- [**SRCNN**](SRCNN.ipynb) : Pre-Upsampling Super Resolution
-
-    - [Image Super-Resolution Using Deep Convolutional Networks](https://arxiv.org/abs/1501.00092)
-    - [Implementation reference](https://github.com/yjn870/SRCNN-pytorch) 
-
-- [**LAPSRN**](LAPSRN.ipynb) : Progressive Reconstruction Networks
-
-    - [Fast and Accurate Image Super-Resolution with Deep Laplacian Pyramid Networks](http://vllab.ucmerced.edu/wlai24/LapSRN/)
-    - [Implementation reference](https://github.com/twtygqyy/pytorch-LapSRN)
-
-- [**RCAN**](RCAN.ipynb) : Attention-Based Network
-
-    - [Image Super-Resolution Using Very Deep Residual Channel Attention Networks](https://arxiv.org/abs/1807.02758)
-    - [Implementation reference](https://github.com/yjn870/RCAN-pytorch)
-
-- [**SRGAN**](SRGAN.ipynb) : Generative Models
-
-    - [Photo-Realistic Single Image Super-Resolution Using a Generative Adversarial Network](https://arxiv.org/abs/1609.04802)
-    - [Implementation reference](https://github.com/leftthomas/SRGAN)
-
-## Sample Result
-
-High Resolution Image
-
-![HighResolution](images/HighResolution.png)
-
-Low Resolution Image
-
-![LowResolution](images/LowResolution.png)
-
-Bicubic Upsampling Image
-
-![Bicubic](images/Bicubic.png)
-
-SRCNN Image
-
-![SRCNN](images/SRCNN.png)
-
-LAPSRN Image
-
-![LAPSRN](images/LAPSRN.png)
-
-RCAN Image
-
-![RCAN](images/RCAN.png)
-
-SRGAN Image
-
-![SRGAN](images/SRGAN.png)
-
-## Result
-
-The following table shows the experimental result.
-
-|     Model     |     PSNR       |     SSIM      |     MOS     |
-|---------------|----------------|---------------|-------------|
-|     SRCNN     |     24.0418    |     0.7012    |     0.4     |
-|     LAPSRN    |     24.5261    |     0.6769    |     0.12    |
-|     RCAN      |     28.3393    |     0.7596    |     0.73    |
-|     SRGAN     |     26.8289    |     0.7196    |     0.65    |
+### Prerequisites
+Make sure you have Python 3.9+ installed along with the required geospatial libraries.
+```bash
+pip install -r requirements.txt

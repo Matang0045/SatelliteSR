@@ -25,7 +25,7 @@ Unlike standard upscaling, our solution explicitly focuses on preserving real-wo
 
 ## 📂 Dataset Reference
 * **Input Data:** European Space Agency (ESA) Copernicus Sentinel-2 (L2A) 10m Imagery.
-* **Ground Truth / Paired Data:** We utilized the **[WorldStrat Dataset](https://github.com/ESA-PhiLab/WorldStrat)**, which provides temporally aligned, high-resolution commercial satellite imagery paired with Sentinel-2 data to train and validate our super-resolution model.
+* **Ground Truth / Paired Data:** Our model is trained on a paired dataset sourced from **https://www.kaggle.com/datasets?search=Sentinel+2+Super+Resolution**, which contains perfectly cropped and aligned 10m low-resolution and sub-4m high-resolution patches for accurate model weight calculation.
 
 ## 🚀 Getting Started
 

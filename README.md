@@ -2,7 +2,7 @@
 
 **Smart India Hackathon 2026 - Official Prototype**  
 **Team Name:** [Your Team Name Here]  
-**Problem Statement ID:** [Add Your PS ID Here]  
+**Problem Statement ID:** 26142
 
 ---
 
@@ -25,7 +25,7 @@ Unlike standard upscaling, our solution explicitly focuses on preserving real-wo
 
 ## 📂 Dataset Reference
 * **Input Data:** European Space Agency (ESA) Copernicus Sentinel-2 (L2A) 10m Imagery.
-* **Ground Truth / Paired Data:** [Mention the dataset you are using to train/test, e.g., WorldStrat or OpenSR]
+* **Ground Truth / Paired Data:** We utilized the **[WorldStrat Dataset](https://github.com/ESA-PhiLab/WorldStrat)**, which provides temporally aligned, high-resolution commercial satellite imagery paired with Sentinel-2 data to train and validate our super-resolution model.
 
 ## 🚀 Getting Started
 
